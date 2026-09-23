@@ -1,12 +1,13 @@
 :root {
-  --page: #f4f7fb;
+  --page: #f3f6fa;
   --surface: #ffffff;
   --surface-soft: #f8fbff;
   --ink: #0f172a;
-  --muted: #64748b;
+  --muted: #5f6f82;
   --line: #dbe4ef;
   --line-strong: #c8d5e4;
   --primary: #1d4f91;
+  --primary-strong: #153f75;
   --primary-soft: #edf5ff;
   --green: #0f7490;
   --green-soft: #eaf7fb;
@@ -27,12 +28,12 @@ html {
 body {
   min-width: 320px;
   margin: 0;
-  padding: 24px;
+  padding: 20px;
   color: var(--ink);
   background: var(--page);
   font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 15px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.5;
 }
 
@@ -49,9 +50,16 @@ button {
 
 .dashboard-container {
   display: grid;
-  max-width: 1520px;
+  grid-template-columns: minmax(0, 1fr);
+  width: 100%;
+  max-width: 1440px;
+  min-width: 0;
   margin: 0 auto;
-  gap: 18px;
+  gap: 16px;
+}
+
+.dashboard-container > * {
+  min-width: 0;
 }
 
 .header {
@@ -59,12 +67,25 @@ button {
 }
 
 .app-hero {
+  position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
-  align-items: end;
-  gap: 24px;
-  padding: 18px 0 8px;
-  border-bottom: 1px solid var(--line);
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 470px);
+  align-items: center;
+  gap: 32px;
+  padding: 24px 24px 22px 28px;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+}
+
+.app-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: var(--primary);
 }
 
 .title-section {
@@ -77,7 +98,7 @@ button {
   margin-bottom: 7px;
   color: var(--primary);
   font-size: 0.72rem;
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: 0;
   text-transform: uppercase;
 }
@@ -86,19 +107,20 @@ button {
   max-width: 880px;
   margin: 0;
   color: var(--ink);
-  font-size: clamp(2rem, 4vw, 3.7rem);
-  font-weight: 300;
+  font-size: clamp(1.8rem, 2.7vw, 2.65rem);
+  font-weight: 600;
   letter-spacing: 0;
-  line-height: 1.05;
+  line-height: 1.12;
+  overflow-wrap: anywhere;
 }
 
 .title-section p {
   max-width: 760px;
-  margin: 14px 0 0;
+  margin: 10px 0 0;
   color: var(--muted);
   font-size: 1rem;
-  font-weight: 300;
-  line-height: 1.7;
+  font-weight: 400;
+  line-height: 1.55;
 }
 
 .hero-meta {
@@ -120,7 +142,7 @@ button {
   padding: 4px;
   background: var(--surface-soft);
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: var(--radius);
 }
 
 .ano-di-toggle button {
@@ -129,9 +151,9 @@ button {
   padding: 7px 14px;
   color: var(--muted);
   background: transparent;
-  border-radius: 999px;
+  border-radius: 5px;
   font-size: 0.86rem;
-  font-weight: 400;
+  font-weight: 600;
   transition: background 0.18s ease, color 0.18s ease;
 }
 
@@ -156,7 +178,7 @@ button {
 .data-chip {
   color: var(--muted);
   font-size: 0.76rem;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .hero-meta strong {
@@ -164,7 +186,7 @@ button {
   margin-top: 6px;
   color: var(--ink);
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1.2;
   overflow-wrap: anywhere;
 }
@@ -177,6 +199,7 @@ button {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.025);
 }
 
 .filters-card,
@@ -200,7 +223,7 @@ button {
   margin: 0;
   color: var(--ink);
   font-size: clamp(1.05rem, 1.4vw, 1.28rem);
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1.25;
 }
 
@@ -218,16 +241,23 @@ button {
   min-height: 30px;
   padding: 5px 10px;
   border: 1px solid var(--line);
-  border-radius: 999px;
+  border-radius: 6px;
   background: var(--surface-soft);
   white-space: nowrap;
 }
 
 .filters-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(160px, 1fr)) repeat(2, minmax(130px, 0.8fr)) auto;
+  grid-template-columns: repeat(14, minmax(0, 1fr));
   gap: 12px;
   align-items: end;
+}
+
+.filter-group:nth-child(-n + 4),
+.filter-group:nth-child(5),
+.filter-group:nth-child(6),
+.filter-actions {
+  grid-column: span 2;
 }
 
 .filter-group,
@@ -243,7 +273,7 @@ button {
   margin-bottom: 6px;
   color: var(--muted);
   font-size: 0.72rem;
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: 0;
   text-transform: uppercase;
 }
@@ -260,6 +290,7 @@ button {
   border-radius: var(--radius);
   outline: 0;
   transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  min-width: 0;
 }
 
 .filter-group select:focus,
@@ -274,6 +305,12 @@ button {
   display: flex;
   align-items: end;
   gap: 8px;
+}
+
+.filter-actions .btn-filter {
+  flex: 1;
+  min-width: 0;
+  padding-inline: 10px;
 }
 
 .btn-filter,
@@ -370,31 +407,29 @@ button {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
+  border-top: 3px solid var(--green);
 }
 
 .kpi-card::before {
-  content: "";
-  display: block;
-  width: 30px;
-  height: 2px;
-  margin-bottom: 14px;
-  background: var(--green);
+  display: none;
 }
 
-.kpi-card:nth-child(2)::before,
-.kpi-card:nth-child(4)::before {
-  background: var(--primary);
+.kpi-card:nth-child(2),
+.kpi-card:nth-child(4) {
+  border-top-color: var(--primary);
 }
 
-.kpi-card:nth-child(3)::before {
-  background: var(--gold);
+.kpi-card:nth-child(3),
+.kpi-card:nth-child(5) {
+  border-top-color: var(--gold);
 }
 
 .kpi-title {
+  min-height: 34px;
   margin-bottom: 8px;
   color: var(--muted);
   font-size: 0.72rem;
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: 0;
   text-transform: uppercase;
 }
@@ -402,7 +437,7 @@ button {
 .kpi-value {
   color: var(--ink);
   font-size: clamp(1.12rem, 1.7vw, 1.52rem);
-  font-weight: 300;
+  font-weight: 600;
   line-height: 1.25;
   overflow-wrap: anywhere;
 }
@@ -412,7 +447,7 @@ button {
   margin-top: 9px;
   color: var(--muted);
   font-size: 0.78rem;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.35;
 }
 
@@ -771,6 +806,11 @@ footer {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .filter-group:nth-child(-n + 6),
+  .filter-actions {
+    grid-column: auto;
+  }
+
   .kpi-grid,
   .ranking-list,
   .info-grid {
@@ -780,7 +820,7 @@ footer {
 
 @media (max-width: 760px) {
   body {
-    padding: 12px;
+    padding: 10px;
   }
 
   .dashboard-container {
@@ -788,10 +828,18 @@ footer {
   }
 
   .app-hero {
-    padding-top: 8px;
+    gap: 20px;
+    padding: 20px 16px 18px 20px;
   }
 
-  .hero-meta,
+  .title-section h1 {
+    font-size: 1.75rem;
+  }
+
+  .title-section p {
+    font-size: 0.9rem;
+  }
+
   .hero-side,
   .filters-grid,
   .kpi-grid,
@@ -799,6 +847,27 @@ footer {
   .filtros-detalhes,
   .info-grid {
     grid-template-columns: 1fr;
+  }
+
+  .hero-meta {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+  }
+
+  .hero-meta div {
+    padding-left: 9px;
+  }
+
+  .hero-meta strong {
+    font-size: 0.9rem;
+  }
+
+  .filters-card,
+  .chart-card,
+  .ranking-container,
+  .projeto-detalhes,
+  .table-section {
+    padding: 16px;
   }
 
   .panel-heading {
@@ -813,6 +882,11 @@ footer {
 
   .filter-actions {
     align-items: stretch;
+  }
+
+  .filter-group:nth-child(-n + 6),
+  .filter-actions {
+    grid-column: 1;
   }
 
   .btn-filter,
@@ -831,7 +905,7 @@ footer {
 
   .chart-card canvas,
   .chart-card--wide canvas {
-    height: 300px !important;
+    height: 280px !important;
   }
 
   .modal {
