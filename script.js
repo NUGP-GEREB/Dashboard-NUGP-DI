@@ -149,8 +149,21 @@ function atualizarRanking() {
             indexAxis: "y",
             responsive: true,
             maintainAspectRatio: false,
+            interaction: { mode: "nearest", axis: "y", intersect: true },
+            hover: { mode: "nearest", axis: "y", intersect: true },
             scales: { x: { ticks: { callback: v => fmtCurto(v) }, grid: { color: "#f1f5f9", lineWidth: 1 }, border: { display: false } }, y: { grid: { display: false }, border: { display: false } } },
-            plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => fmt(ctx.raw) } } }
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    mode: "nearest",
+                    axis: "y",
+                    intersect: true,
+                    callbacks: {
+                        title: itens => itens[0]?.label || "",
+                        label: ctx => `Executado: ${fmt(ctx.raw)}`
+                    }
+                }
+            }
         }
     });
 }
@@ -219,13 +232,37 @@ function atualizarAreaRubric() {
         type: "bar",
         data: { labels: labelsArea, datasets: datasets },
         options: {
+            indexAxis: "y",
             responsive: true,
             maintainAspectRatio: false,
+            interaction: { mode: "nearest", axis: "y", intersect: true },
             scales: {
-                x: { stacked: true, ticks: { autoSkip: false, maxRotation: 25, minRotation: 0 }, grid: { display: false }, border: { display: false } },
-                y: { stacked: true, ticks: { callback: v => fmtCurto(v) }, grid: { color: "#f1f5f9", lineWidth: 1 }, border: { display: false } }
+                x: { stacked: true, ticks: { callback: v => fmtCurto(v) }, grid: { color: "#f1f5f9", lineWidth: 1 }, border: { display: false } },
+                y: {
+                    stacked: true,
+                    ticks: {
+                        autoSkip: false,
+                        callback: function(valor) {
+                            const rotulo = this.getLabelForValue(valor);
+                            return rotulo.length > 28 ? `${rotulo.slice(0, 27)}...` : rotulo;
+                        }
+                    },
+                    grid: { display: false },
+                    border: { display: false }
+                }
             },
-            plugins: { legend: { position: "bottom", labels: { boxWidth: 8, boxHeight: 8, usePointStyle: true } }, tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${fmt(ctx.raw)}` } } }
+            plugins: {
+                legend: { position: "bottom", labels: { boxWidth: 8, boxHeight: 8, usePointStyle: true } },
+                tooltip: {
+                    mode: "nearest",
+                    axis: "y",
+                    intersect: true,
+                    callbacks: {
+                        title: itens => itens[0]?.label || "",
+                        label: ctx => `${ctx.dataset.label}: ${fmt(ctx.raw)}`
+                    }
+                }
+            }
         }
     });
 }
