@@ -107,6 +107,44 @@ button {
   gap: 12px;
 }
 
+.hero-side {
+  display: grid;
+  align-content: end;
+  gap: 12px;
+}
+
+.ano-di-toggle {
+  display: inline-flex;
+  justify-self: end;
+  gap: 4px;
+  padding: 4px;
+  background: var(--surface-soft);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+}
+
+.ano-di-toggle button {
+  min-width: 72px;
+  min-height: 34px;
+  padding: 7px 14px;
+  color: var(--muted);
+  background: transparent;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  font-weight: 400;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.ano-di-toggle button.active {
+  color: #fff;
+  background: var(--primary);
+}
+
+.ano-di-toggle button:not(.active):hover {
+  color: var(--primary);
+  background: var(--primary-soft);
+}
+
 .hero-meta div {
   min-width: 0;
   padding: 2px 0 2px 14px;
@@ -725,6 +763,10 @@ footer {
     grid-template-columns: 1fr;
   }
 
+  .ano-di-toggle {
+    justify-self: start;
+  }
+
   .filters-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -750,6 +792,7 @@ footer {
   }
 
   .hero-meta,
+  .hero-side,
   .filters-grid,
   .kpi-grid,
   .ranking-list,
@@ -776,6 +819,14 @@ footer {
   #export-csv,
   .btn-secondary {
     width: 100%;
+  }
+
+  .ano-di-toggle {
+    width: 100%;
+  }
+
+  .ano-di-toggle button {
+    flex: 1;
   }
 
   .chart-card canvas,

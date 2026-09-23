@@ -17,14 +17,20 @@
 <div class="dashboard-container">
 <header class="header app-hero">
   <div class="title-section">
-    <span class="hero-kicker">Fiocruz Brasília | DI 2026</span>
+    <span id="heroKicker" class="hero-kicker">Fiocruz Brasília | DI 2026</span>
     <h1>Painel financeiro NUGP-DI</h1>
     <p>Execução de gastos, saldos e projetos com filtros dinâmicos para acompanhamento do NUGP-DI.</p>
   </div>
-  <div class="hero-meta" aria-label="Resumo da base">
-    <div><span>Base</span><strong>129 gastos</strong></div>
-    <div><span>Projetos</span><strong>27</strong></div>
-    <div><span>Caixa Fiotec</span><strong>24/04/2026</strong></div>
+  <div class="hero-side">
+    <div class="ano-di-toggle" aria-label="Selecionar ano DI">
+      <button id="btn-ano-2025" type="button">2025</button>
+      <button id="btn-ano-2026" class="active" type="button">2026</button>
+    </div>
+    <div class="hero-meta" aria-label="Resumo da base">
+      <div><span>Base</span><strong id="baseCountMeta">363 gastos</strong></div>
+      <div><span>Projetos</span><strong id="projectCountMeta">61</strong></div>
+      <div><span>Caixa Fiotec</span><strong id="cashDateMeta">09/09/2026</strong></div>
+    </div>
   </div>
 </header>
 
@@ -91,7 +97,7 @@
   <div class="panel-heading">
     <div>
       <span class="section-eyebrow">Registros</span>
-      <h2>Tabela de Gastos DI 2026</h2>
+      <h2 id="tableTitle">Tabela de Gastos DI 2026</h2>
     </div>
     <div class="toolbar">
       <button id="export-csv"><i class="fas fa-download"></i> Exportar CSV</button>
@@ -106,7 +112,7 @@
       <span class="section-eyebrow">Saldo disponível</span>
       <h3><i class="fas fa-ranking-star"></i> Projetos com maior saldo DI</h3>
     </div>
-    <span class="data-chip">Caixa Geral Fiotec - 24/04/2026</span>
+    <span id="saldoDataChip" class="data-chip">Caixa Geral Fiotec - 09/09/2026</span>
   </div>
   <div class="ranking-list" id="rankingSaldoList"></div>
 </section>
