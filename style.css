@@ -1,5 +1,5 @@
 :root {
-  --page: #f3f6fa;
+  --page: #f2f5f9;
   --surface: #ffffff;
   --surface-soft: #f8fbff;
   --ink: #0f172a;
@@ -14,7 +14,7 @@
   --gold: #6f86a6;
   --gold-soft: #f3f7fb;
   --red: #9f3a38;
-  --radius: 8px;
+  --radius: 14px;
 }
 
 * {
@@ -396,37 +396,35 @@ button {
 
 .kpi-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: 1.25fr 1.25fr 0.8fr 0.8fr;
   gap: 12px;
 }
 
 .kpi-card {
   min-width: 0;
-  min-height: 132px;
-  padding: 16px;
+  min-height: 144px;
+  padding: 18px;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  border-top: 3px solid var(--green);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.kpi-card::before {
-  display: none;
+.kpi-card--primary {
+  background: #173e6b;
+  border-color: #173e6b;
 }
 
-.kpi-card:nth-child(2),
-.kpi-card:nth-child(4) {
-  border-top-color: var(--primary);
-}
-
-.kpi-card:nth-child(3),
-.kpi-card:nth-child(5) {
-  border-top-color: var(--gold);
-}
+.kpi-card--primary .kpi-title,
+.kpi-card--primary .kpi-meta { color: #d2e4f6; }
+.kpi-card--primary .kpi-value { color: #ffffff; }
+.kpi-title i { margin-right: 7px; }
 
 .kpi-title {
-  min-height: 34px;
-  margin-bottom: 8px;
+  min-height: 20px;
+  margin-bottom: 16px;
   color: var(--muted);
   font-size: 0.72rem;
   font-weight: 600;
@@ -436,7 +434,7 @@ button {
 
 .kpi-value {
   color: var(--ink);
-  font-size: clamp(1.12rem, 1.7vw, 1.52rem);
+  font-size: clamp(1.35rem, 2vw, 1.9rem);
   font-weight: 600;
   line-height: 1.25;
   overflow-wrap: anywhere;
@@ -535,7 +533,7 @@ button {
 
 .ranking-list {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: 1.25fr 1.25fr 0.8fr 0.8fr;
   gap: 12px;
 }
 
@@ -811,7 +809,6 @@ footer {
     grid-column: auto;
   }
 
-  .kpi-grid,
   .ranking-list,
   .info-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -842,7 +839,6 @@ footer {
 
   .hero-side,
   .filters-grid,
-  .kpi-grid,
   .ranking-list,
   .filtros-detalhes,
   .info-grid {
@@ -928,4 +924,27 @@ footer {
   .modal-table-wrap {
     padding: 0 14px 14px;
   }
+}
+
+
+/* Cabe?alho e indicadores de execu??o */
+.app-hero { padding: 30px; border-top: 4px solid #173e6b; }
+.app-hero::before { display: none; }
+.filters-card { background: #fbfcfe; }
+button:focus-visible, select:focus-visible, input:focus-visible { outline: 3px solid #76a9df; outline-offset: 3px; }
+@media (min-width: 1100px) {
+  .app-hero { grid-template-columns: minmax(0, 1fr) minmax(340px, 440px); }
+  .charts-row--primary { grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); }
+}
+@media (max-width: 760px) {
+  .app-hero { padding: 22px 18px; }
+  .kpi-card { min-height: 132px; padding: 18px; }
+  .kpi-value { font-size: 1.65rem; }
+}
+
+@media (min-width: 600px) and (max-width: 959px) {
+  .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 599px) {
+  .kpi-grid { grid-template-columns: 1fr; }
 }
